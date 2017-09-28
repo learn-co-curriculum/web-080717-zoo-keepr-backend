@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
-  get 'animals/:id', to: 'animals#show'
+  namespace :api do
 
-  get 'animals', to: 'animals#index'
+    namespace :v1 do
 
-  post 'animals', to: 'animals#create'
+      get 'animals/:id', to: 'animals#show'
+
+      get 'animals', to: 'animals#index'
+
+      post 'animals', to: 'animals#create'
+      
+    end
+
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

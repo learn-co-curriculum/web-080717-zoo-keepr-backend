@@ -1,4 +1,4 @@
-class AnimalsController < ApplicationController
+class Api::V1::AnimalsController < ApplicationController
   def show
     @animal = Animal.find_by(id: params[:id])
     render json: @animal
@@ -14,10 +14,10 @@ class AnimalsController < ApplicationController
     @animal = Animal.new(name: params[:name], gender: params[:gender], species: @species)
 
     if @animal.save
-      render @animal
+      render json: @animal
     else
-      render json: {message: 'That animal couldnt be saved'}
+      message = {message: 'That animal could not be saved'}
+      render json: message, status: :bad_request
     end
-
   end
 end
